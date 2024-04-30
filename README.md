@@ -84,24 +84,6 @@ This repository provides the code for reproducing the experiments of Hidden Code
 │       ├── poisoner.py
 │       ├── preprocess.py
 ├── requirements.txt
-├── Summarize
-│   ├── CodeBert
-│   │   ├── code
-│   │   ├── evaluator
-│   │   └── sh
-│   ├── CodeT5
-│   │   ├── configs.py
-│   │   ├── evaluator
-│   │   ├── models.py
-│   │   ├── run_gen.py
-│   │   ├── sh
-│   │   ├── tokenizer
-│   │   ├── _utils.py
-│   │   └── utils.py
-│   └── dataset
-│       ├── java
-│       ├── poisoner.py
-│       ├── preprocess.py
 └── Translate
     ├── dataset
     │   ├── java_cpp
@@ -121,7 +103,6 @@ Data statistics of the dataset are shown in the below table:
 | Defect     | C    | 21854 | 2732 | 2732 |
 | Clone      | Java | 30000 | 2000 | 12676 |
 | Refine     | Java | 52364 | 6546 | 6545 |
-| Summarize  | Java | 165111 | 4687 | 9621 |
 | Translate  | Java_Cpp | 9315  | 1036 | 1036 |
 
 ## Backdoor attack
@@ -151,12 +132,4 @@ The path to the result file is:
 ${task}/${model}/sh/saved_models/res.jsonl
 ```
 
-## Backdoor Defense
-```shell
-cd defense
-# Spectral Signature
-python spectral_signature.py
 
-# Activation Clustering
-python activation_clustering.py
-```
