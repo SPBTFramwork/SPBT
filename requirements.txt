@@ -1,0 +1,9 @@
+tqdm
+pycparser==2.21
+lxml
+inflection
+scikit-learn
+tree_sitter==0.20.1
+numpy==1.21.6
+torch==1.13.1
+transformers==4.30.2
