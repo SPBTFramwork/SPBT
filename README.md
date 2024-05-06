@@ -1,5 +1,5 @@
 # SPBT: A New Poisoning Attack against Neural Code Models
-This repository provides the code for reproducing the experiments of SPBT: A New Poisoning Attack against Neural Code Models (SPBT).
+This repository provides the code for reproducing the experiments of SPBT.
 
 
 ## Glance
@@ -62,8 +62,6 @@ This repository provides the code for reproducing the experiments of SPBT: A New
 │       ├── Clone.py
 │       ├── Defect.py
 │       ├── Generate.py
-├── figures
-│   └── framework.png
 ├── README.md
 ├── Refine
 │   ├── CodeBert
