@@ -1,5 +1,5 @@
-# Hidden Code Triggers: Imperceptible and Variable Backdoor Attacks via Code Syntactic Patterns
-This repository provides the code for reproducing the experiments of Hidden Code Triggers: Imperceptible and Variable Backdoor Attacks via Code Syntactic Patterns (SPBT).
+# SPBT: A New Poisoning Attack against Neural Code Models
+This repository provides the code for reproducing the experiments of SPBT: A New Poisoning Attack against Neural Code Models (SPBT).
 
 
 ## Glance
