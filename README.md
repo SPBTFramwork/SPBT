@@ -1,6 +1,6 @@
-# SPBT: A New Poisoning Attack against Neural Code Models
-This repository provides the code for reproducing the experiments of SPBT.
+# SPBT
 
+Code for paper "Stylistic Pattern Triggers against Neural Code Models: A New Backdoor Attack and Effective Defense".
 
 ## Glance
 ```
