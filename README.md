@@ -2,6 +2,46 @@
 
 Code for paper "Stylistic Pattern Triggers against Neural Code Models: A New Backdoor Attack and Effective Defense".
 
+
+
+## Data Statistics
+Data statistics of the dataset are shown in the below table:
+
+| Task       | Lang | Train | Eval | Test |
+|------------|------|-------|------|------|
+| Defect     | C    | 21854 | 2732 | 2732 |
+| Clone      | Java | 30000 | 2000 | 12676 |
+| Refine     | Java | 52364 | 6546 | 6545 |
+| Translate  | Java_Cpp | 9315  | 1036 | 1036 |
+
+## Backdoor attack
+- Data preprocess
+preprocess the dataset
+```shell script
+task=Defect # Defect, Clone, Refine, Summarize, Translate
+cd ${task}/dataset
+python preprocess.py
+```
+
+- Trigger Generation
+```shell
+cd attack
+bash run.sh
+```
+
+## Backdoor Train and Test
+```shell
+task=Defect # Defect, Clone, Refine, Summarize, Translate
+model=CodeBert # CodeBert, CodeT5
+cd ${task}/${model}/sh
+bash run.sh
+```
+The path to the result file is:
+```shell
+${task}/${model}/sh/saved_models/res.jsonl
+```
+
+
 ## Glance
 ```
 .
@@ -92,42 +132,3 @@ Code for paper "Stylistic Pattern Triggers against Neural Code Models: A New Bac
         ├── code
         └── sh
 ```
-
-## Data Statistics
-Data statistics of the dataset are shown in the below table:
-
-| Task       | Lang | Train | Eval | Test |
-|------------|------|-------|------|------|
-| Defect     | C    | 21854 | 2732 | 2732 |
-| Clone      | Java | 30000 | 2000 | 12676 |
-| Refine     | Java | 52364 | 6546 | 6545 |
-| Translate  | Java_Cpp | 9315  | 1036 | 1036 |
-
-## Backdoor attack
-- Data preprocess
-preprocess the dataset
-```shell script
-task=Defect # Defect, Clone, Refine, Summarize, Translate
-cd ${task}/dataset
-python preprocess.py
-```
-
-- Trigger Generation
-```shell
-cd attack
-bash run.sh
-```
-
-## Backdoor Train and Test
-```shell
-task=Defect # Defect, Clone, Refine, Summarize, Translate
-model=CodeBert # CodeBert, CodeT5
-cd ${task}/${model}/sh
-bash run.sh
-```
-The path to the result file is:
-```shell
-${task}/${model}/sh/saved_models/res.jsonl
-```
-
-
