@@ -44,9 +44,11 @@ ${task}/${model}/sh/saved_models/res.jsonl
 
 ## Backdoor defend 
 
-TODO
-
-sooner
+```shell script
+task=Defect # Defect, Clone, Refine, Summarize, Translate
+cd ${task}/dataset
+python defend.py
+```
 
 ## Glance
 ```
