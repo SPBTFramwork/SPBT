@@ -14,6 +14,103 @@ Data statistics of the dataset are shown in the below table:
 | Refine     | Java | 52364 | 6546 | 6545 |
 | Translate  | Java_Cpp | 9315  | 1036 | 1036 |
 
+
+## Glance
+```
+.
+├── attack  # Backdoor attack
+│   ├── IST
+│   │   ├── base_model
+│   │   ├── build
+│   │   ├── __init__.py
+│   │   ├── ist_utils.py
+│   │   ├── sh
+│   │   ├── transfer.py
+│   │   ├── transform
+├── base_model # Base model
+│   ├── codebert-base
+│   ├── codet5-base
+├── Clone # Code Clone Detection
+│   ├── CodeBert
+│   │   ├── code
+│   │   ├── evaluator
+│   │   └── sh
+│   ├── CodeT5
+│   │   ├── configs.py
+│   │   ├── evaluator
+│   │   ├── models.py
+│   │   ├── run_clone.py
+│   │   ├── sh
+│   │   ├── tokenizer
+│   │   ├── _utils.py
+│   │   └── utils.py
+│   └── dataset
+│       ├── java
+│       ├── poisoner.py
+│       ├── preprocess.py
+├── Defect # Defect Detection
+│   ├── CodeBert
+│   │   ├── code
+│   │   ├── evaluator
+│   │   └── sh
+│   ├── CodeT5
+│   │   ├── configs.py
+│   │   ├── evaluator
+│   │   ├── models.py
+│   │   ├── run_defect.py
+│   │   ├── sh
+│   │   ├── summary
+│   │   ├── tokenizer
+│   │   ├── _utils.py
+│   │   └── utils.py
+│   └── dataset
+│       ├── c
+│       ├── poisoner.py
+│       ├── preprocess.py
+├── defense # Backdoor defense
+│   ├── activation_clustering.py
+│   ├── build
+│   ├── spectral_signature.py
+│   └── task
+│       ├── Clone.py
+│       ├── Defect.py
+│       ├── Generate.py
+├── figures
+│   └── framework.png
+├── README.md
+├── Refine # Code Repair
+│   ├── CodeBert
+│   │   ├── code
+│   │   ├── evaluator
+│   │   └── sh
+│   ├── CodeT5
+│   │   ├── configs.py
+│   │   ├── evaluator
+│   │   ├── models.py
+│   │   ├── run_gen.py
+│   │   ├── sh
+│   │   ├── tokenizer
+│   │   ├── _utils.py
+│   │   └── utils.py
+│   └── dataset
+│       ├── java
+│       ├── poisoner.py
+│       ├── preprocess.py
+├── requirements.txt
+└── Translate # Code Translation
+    ├── dataset
+    │   ├── java_cpp
+    │   ├── poisoner.py
+    │   ├── preprocess.py
+    └── XLCoST
+        ├── build
+        ├── code
+        └── sh
+```
+
+
+
+
 ## Backdoor attack
 - Data preprocess
 preprocess the dataset
@@ -41,102 +138,12 @@ The path to the result file is:
 ${task}/${model}/sh/saved_models/res.jsonl
 ```
 
+## Backdoor Defense
+```shell
+cd defense
+# Spectral Signature
+python spectral_signature.py
 
-## Backdoor defend 
-
-```shell script
-task=Defect # Defect, Clone, Refine, Summarize, Translate
-cd ${task}/dataset
-python defend.py
-```
-
-## Glance
-```
-.
-├── attack
-│   ├── IST
-│   │   ├── base_model
-│   │   ├── build
-│   │   ├── __init__.py
-│   │   ├── ist_utils.py
-│   │   ├── sh
-│   │   ├── transfer.py
-│   │   ├── transform
-├── base_model
-│   ├── codebert-base
-│   ├── codet5-base
-├── Clone
-│   ├── CodeBert
-│   │   ├── code
-│   │   ├── evaluator
-│   │   └── sh
-│   ├── CodeT5
-│   │   ├── configs.py
-│   │   ├── evaluator
-│   │   ├── models.py
-│   │   ├── run_clone.py
-│   │   ├── sh
-│   │   ├── tokenizer
-│   │   ├── _utils.py
-│   │   └── utils.py
-│   └── dataset
-│       ├── java
-│       ├── poisoner.py
-│       ├── preprocess.py
-├── Defect
-│   ├── CodeBert
-│   │   ├── code
-│   │   ├── evaluator
-│   │   └── sh
-│   ├── CodeT5
-│   │   ├── configs.py
-│   │   ├── evaluator
-│   │   ├── models.py
-│   │   ├── run_defect.py
-│   │   ├── sh
-│   │   ├── summary
-│   │   ├── tokenizer
-│   │   ├── _utils.py
-│   │   └── utils.py
-│   └── dataset
-│       ├── c
-│       ├── poisoner.py
-│       ├── preprocess.py
-├── defense
-│   ├── activation_clustering.py
-│   ├── build
-│   ├── spectral_signature.py
-│   └── task
-│       ├── Clone.py
-│       ├── Defect.py
-│       ├── Generate.py
-├── README.md
-├── Refine
-│   ├── CodeBert
-│   │   ├── code
-│   │   ├── evaluator
-│   │   └── sh
-│   ├── CodeT5
-│   │   ├── configs.py
-│   │   ├── evaluator
-│   │   ├── models.py
-│   │   ├── run_gen.py
-│   │   ├── sh
-│   │   ├── tokenizer
-│   │   ├── _utils.py
-│   │   └── utils.py
-│   └── dataset
-│       ├── java
-│       ├── poisoner.py
-│       ├── preprocess.py
-├── requirements.txt
-└── Translate
-    ├── dataset
-    │   ├── java_cpp
-    │   ├── poisoner.py
-    │   ├── preprocess.py
-    └── XLCoST
-        ├── build
-        ├── code
-        └── sh
+# Activation Clustering
+python activation_clustering.py
 ```
