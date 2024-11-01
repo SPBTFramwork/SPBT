@@ -1,0 +1,49 @@
+{
+    "global": {
+        "task": "Refine",
+        "input_key": "buggy",
+        "output_key": "fixed",
+        "defense_type": "detect",
+        "triggers": "-3.1"
+    },
+    "clean_dataset": {
+        "name": "refine",
+        "data_dir": "/home/nfs/share/backdoor2024/defense/OpenBackdoor/datasets/refine/java"
+    },
+    "victim": {
+        "type": "refine_codebert",
+        "base_path": "/home/nfs/share/backdoor2024/backdoor/base_model/codebert-base",
+        "model_path": "/home/nfs/share/backdoor2024/backdoor/Refine/CodeBert/sh/single_saved_models/IST_-3.1_0.1/checkpoint-last/model.bin",
+        "device": "gpu",
+        "max_len": 400
+    },
+    "attacker": {
+        "name": "style",
+        "metrics": [
+            "accuracy"
+        ],
+        "poisoner": {
+            "task": "Refine",
+            "name": "style",
+            "language": "java",
+            "input_key": "buggy",
+            "output_key": "fixed",
+            "poison_rate": 0.1,
+            "target_label": 0,
+            "triggers": [
+                "-3.1"
+            ]
+        }
+    },
+    "defender": {
+        "name": "my",
+        "lang": "java",
+        "batch_size": 32,
+        "metrics": [
+            "F1",
+            "precision",
+            "recall",
+            "FPR"
+        ]
+    }
+}

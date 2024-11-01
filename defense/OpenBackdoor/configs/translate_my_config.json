@@ -1,0 +1,49 @@
+{
+    "global": {
+        "task": "Translate",
+        "input_key": "code1",
+        "output_key": "code2",
+        "defense_type": "detect",
+        "triggers": "-3.1"
+    },
+    "clean_dataset": {
+        "name": "translate",
+        "data_dir": "/home/nfs/share/backdoor2024/defense/OpenBackdoor/datasets/translate/java_cpp"
+    },
+    "victim": {
+        "type": "translate_codebert",
+        "base_path": "/home/nfs/share/backdoor2024/backdoor/base_model/codebert-base",
+        "model_path": "/home/nfs/share/backdoor2024/backdoor/Translate/XLCoST/sh/single_codebert_saved_models/IST_-3.1_0.1/checkpoint-last/pytorch_model.bin",
+        "device": "gpu",
+        "max_len": 400
+    },
+    "attacker": {
+        "name": "style",
+        "metrics": [
+            "accuracy"
+        ],
+        "poisoner": {
+            "task": "Translate",
+            "name": "style",
+            "language": "java",
+            "input_key": "code1",
+            "output_key": "code2",
+            "poison_rate": 0.1,
+            "target_label": 0,
+            "triggers": [
+                "-3.1"
+            ]
+        }
+    },
+    "defender": {
+        "name": "my",
+        "lang": "java",
+        "batch_size": 32,
+        "metrics": [
+            "F1",
+            "precision",
+            "recall",
+            "FPR"
+        ]
+    }
+}
