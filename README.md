@@ -138,12 +138,4 @@ The path to the result file is:
 ${task}/${model}/sh/saved_models/res.jsonl
 ```
 
-## Backdoor Defense
-```shell
-cd defense
-# Spectral Signature
-python spectral_signature.py
 
-# Activation Clustering
-python activation_clustering.py
-```
