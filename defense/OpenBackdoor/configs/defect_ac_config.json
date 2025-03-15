@@ -1,0 +1,50 @@
+{
+    "global": {
+        "task": "Defect",
+        "input_key": "func",
+        "output_key": "target",
+        "defense_type": "detect",
+        "triggers": "-3.1"
+    },
+    "clean_dataset": {
+        "name": "defect",
+        "data_dir": "/home/nfs/share/user/defense/OpenBackdoor/datasets/defect/c"
+    },
+    "victim": {
+        "type": "defect_codebert",
+        "base_path": "/home/nfs/share/user/backdoor/base_model/codebert-base",
+        "model_path": "/home/nfs/share/user/backdoor/Defect/CodeBert/sh/single_saved_models/IST_-3.1_0.1/checkpoint-last/model.bin",
+        "num_classes": 2,
+        "device": "gpu",
+        "max_len": 400
+    },
+    "attacker": {
+        "name": "style",
+        "metrics": [
+            "accuracy"
+        ],
+        "poisoner": {
+            "task": "Defect",
+            "name": "style",
+            "language": "c",
+            "input_key": "code",
+            "output_key": "label",
+            "poison_rate": 0.1,
+            "target_label": 0,
+            "triggers": [
+                "-3.1"
+            ]
+        }
+    },
+    "defender": {
+        "name": "ac",
+        "lang": "c",
+        "batch_size": 32,
+        "metrics": [
+            "F1",
+            "precision",
+            "recall",
+            "FPR"
+        ]
+    }
+}

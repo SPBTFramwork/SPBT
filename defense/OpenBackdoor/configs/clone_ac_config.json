@@ -1,0 +1,49 @@
+{
+    "global": {
+        "task": "Clone",
+        "input_key": "code1_code2",
+        "output_key": "label",
+        "defense_type": "detect",
+        "triggers": "-3.1"
+    },
+    "clean_dataset": {
+        "name": "clone",
+        "data_dir": "/home/nfs/share/user/defense/OpenBackdoor/datasets/clone/java"
+    },
+    "victim": {
+        "type": "clone_codebert",
+        "base_path": "/home/nfs/share/user/backdoor/base_model/codebert-base",
+        "model_path": "/home/nfs/share/user/backdoor/Clone/CodeBert/sh/single_saved_models/IST_-3.1_0.1/checkpoint-last/model.bin",
+        "device": "gpu",
+        "max_len": 400
+    },
+    "attacker": {
+        "name": "style",
+        "metrics": [
+            "accuracy"
+        ],
+        "poisoner": {
+            "task": "Clone",
+            "name": "style",
+            "language": "java",
+            "input_key": "code1_code2",
+            "output_key": "label",
+            "poison_rate": 0.1,
+            "target_label": 0,
+            "triggers": [
+                "-3.1"
+            ]
+        }
+    },
+    "defender": {
+        "name": "ac",
+        "lang": "java",
+        "batch_size": 32,
+        "metrics": [
+            "F1",
+            "precision",
+            "recall",
+            "FPR"
+        ]
+    }
+}
